@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ivana 🌹</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        canvas {
+            background-color: black;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="roseCanvas"></canvas>
+    <div class="message">Eu sempre te quero, Ivana ❤️</div>
+    
+    <script>
+        const canvas = document.getElementById("roseCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 400;
+        canvas.height = 500;
+        
+        function drawPetal(x, y, width, height, angle) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.ellipse(0, 0, width, height, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+        
+        function drawFlower() {
+            const centerX = canvas.width / 2;
+            const centerY = 150;
+            for (let i = 0; i < 12; i++) {
+                drawPetal(centerX, centerY, 40, 80, (i * 30) * Math.PI / 180);
+            }
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function drawStem() {
+            ctx.fillStyle = "green";
+            ctx.fillRect(canvas.width / 2 - 5, 170, 10, 200);
+        }
+        
+        function drawScene() {
+            drawFlower();
+            drawStem();
+        }
+        
+        drawScene();
+    </script>
